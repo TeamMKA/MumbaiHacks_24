@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-//import img from "@public/assets/images/logo.svg";
+import img from "@public/logo.png";
 import { useEffect, useState } from "react";
 import { signIn, signOut, getProviders, useSession } from "next-auth/react";
 
@@ -9,28 +9,19 @@ const NavBar = () => {
   const [toggle, settoggle] = useState(false);
   const [providers, setProviders] = useState(null);
   //const { data : session } = useSession();
-  const [session, setSession] = useState(true);
-
-  useEffect(() => {
-    const settingProviders = async () => {
-      const response = await getProviders();
-      console.log("Respose", response);
-      setProviders(response);
-    };
-    settingProviders();
-  }, []);
+  const [session, setSession] = useState(false);
 
   return (
     <nav className="w-full flex-between pt-3 mb-16">
-      <Link href="/" className="flex justify-center items-center gap-2 ">
-        {/* <Image
+      <Link href="/" className="flex justify-center items-center gap-5 ">
+        <Image
           src={img}
-          height={30}
-          width={30}
+          height={100}
+          width={100}
           alt="PromptStar logo"
           className="object-contain "
-        /> */}
-        <p className="logo_text">PromptStar</p>
+        />
+        <p className="logo_text">SafeRakhshak</p>
       </Link>
 
       {/* Desktop Navigation */}
@@ -40,7 +31,9 @@ const NavBar = () => {
             <Link href="/create-post">
               <button className="black_btn">Create Post</button>
             </Link>
-            <button className="outline_btn" onClick={signOut}>Sign Out</button>
+            <button className="outline_btn" onClick={signOut}>
+              Sign Out
+            </button>
             <Link href="/profile" className="rounded-full">
               <Image
                 src={session?.user.image}
@@ -53,17 +46,9 @@ const NavBar = () => {
           </div>
         ) : (
           <div>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  className="black_btn"
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
-                >
-                  Sign In
-                </button>
-              ))}
+            <button type="button" className="black_btn">
+              Sign In
+            </button>
           </div>
         )}
       </div>
@@ -97,10 +82,7 @@ const NavBar = () => {
                 >
                   Create Post
                 </Link>
-                <button
-                  className="black_btn w-full mt-5"
-                  onClick={signOut}
-                >
+                <button className="black_btn w-full mt-5" onClick={signOut}>
                   Sign Out
                 </button>
               </div>
@@ -108,17 +90,9 @@ const NavBar = () => {
           </div>
         ) : (
           <div>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  className="black_btn"
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
-                >
-                  Sign In
-                </button>
-              ))}
+            <button type="button" className="black_btn">
+              Sign In
+            </button>
           </div>
         )}
       </div>
