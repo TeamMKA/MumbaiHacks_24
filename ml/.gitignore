@@ -1,3 +1,4 @@
 .venv
 *.keras
 *.h5
+model.tar.gz
